@@ -1,0 +1,561 @@
+/* ============================================
+   EL TRONO DE LA VERDAD EFECTIVA
+   Estilos – Temática Renacentista
+   ============================================ */
+
+/* ---------- Google Fonts ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* ---------- Variables globales ---------- */
+:root {
+  --vino:        #6B1D2A;
+  --vino-oscuro: #4A0E1A;
+  --dorado:      #C9A84C;
+  --dorado-claro:#E8D48B;
+  --pergamino:   #F5E6C8;
+  --pergamino-oscuro: #E8D4A8;
+  --negro:       #1A1A1A;
+  --blanco:      #FFF8F0;
+  --rojo-alerta: #8B0000;
+  --verde:       #2E7D32;
+  --sombra:      rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- Reset & Base ---------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background: linear-gradient(165deg, var(--vino-oscuro) 0%, var(--negro) 50%, var(--vino-oscuro) 100%);
+  color: var(--pergamino);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* ---------- Fondo decorativo ---------- */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(107, 29, 42, 0.3) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(201, 168, 76, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(107, 29, 42, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------- Header ---------- */
+.header {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+  padding: 2.5rem 1rem 1.5rem;
+  background: linear-gradient(180deg, rgba(74, 14, 26, 0.9) 0%, transparent 100%);
+  border-bottom: 2px solid var(--dorado);
+}
+
+.header h1 {
+  font-family: 'Cinzel', serif;
+  font-weight: 900;
+  font-size: clamp(1.6rem, 5vw, 3rem);
+  color: var(--dorado);
+  text-shadow:
+    0 0 20px rgba(201, 168, 76, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.6);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+/* Ornamento decorativo debajo del título */
+.header h1::after {
+  content: '⚜';
+  display: block;
+  font-size: 1.4rem;
+  margin-top: 0.4rem;
+  color: var(--dorado-claro);
+  opacity: 0.7;
+}
+
+.header .credits {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  color: var(--pergamino-oscuro);
+  font-style: italic;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+/* ---------- Contenedor principal ---------- */
+.game-container {
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  max-width: 850px;
+  margin: 2rem auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ---------- Barra de Dignidad ---------- */
+.dignity-section {
+  background: rgba(74, 14, 26, 0.5);
+  border: 1px solid var(--dorado);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.dignity-label {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--dorado);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.dignity-label .percentage {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  color: var(--dorado-claro);
+  font-weight: 700;
+}
+
+.progress-bar-track {
+  width: 100%;
+  height: 22px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 11px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  position: relative;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--dorado) 0%, var(--dorado-claro) 50%, var(--dorado) 100%);
+  background-size: 200% 100%;
+  border-radius: 11px;
+  transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* Colores según nivel */
+.progress-bar-fill.warning {
+  background: linear-gradient(90deg, #E65100, #FF8F00, #E65100);
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.progress-bar-fill.danger {
+  background: linear-gradient(90deg, var(--rojo-alerta), #C62828, var(--rojo-alerta));
+  background-size: 200% 100%;
+  animation: shimmer 1.2s ease-in-out infinite;
+}
+
+/* ---------- Indicador de escenario ---------- */
+.scenario-indicator {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  color: var(--dorado);
+  letter-spacing: 2px;
+  opacity: 0.8;
+}
+
+.scenario-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+.scenario-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--dorado);
+  background: transparent;
+  transition: all 0.4s ease;
+}
+
+.scenario-dot.active {
+  background: var(--dorado);
+  box-shadow: 0 0 10px rgba(201, 168, 76, 0.6);
+}
+
+.scenario-dot.completed {
+  background: var(--dorado-claro);
+}
+
+/* ---------- Panel de historia (narrativa) ---------- */
+.story-panel {
+  background: linear-gradient(145deg, rgba(245, 230, 200, 0.1) 0%, rgba(74, 14, 26, 0.3) 100%);
+  border: 1px solid var(--dorado);
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(201, 168, 76, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ornamento esquina superior izquierda */
+.story-panel::before {
+  content: '❧';
+  position: absolute;
+  top: 8px;
+  left: 14px;
+  font-size: 1.3rem;
+  color: var(--dorado);
+  opacity: 0.4;
+}
+
+/* Ornamento esquina inferior derecha */
+.story-panel::after {
+  content: '❧';
+  position: absolute;
+  bottom: 8px;
+  right: 14px;
+  font-size: 1.3rem;
+  color: var(--dorado);
+  opacity: 0.4;
+  transform: rotate(180deg);
+}
+
+.story-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 700;
+  color: var(--dorado);
+  text-align: center;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.story-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  line-height: 1.8;
+  color: var(--pergamino);
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ---------- Botones de decisión ---------- */
+.decisions {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-decision {
+  flex: 1 1 280px;
+  max-width: 400px;
+  padding: 1.4rem 1.8rem;
+  border: 2px solid var(--dorado);
+  border-radius: 12px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+}
+
+.btn-decision::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-decision:hover::before {
+  left: 100%;
+}
+
+/* Opción A – Ética cristiana */
+.btn-option-a {
+  background: linear-gradient(145deg, rgba(46, 125, 50, 0.2), rgba(46, 125, 50, 0.05));
+  color: var(--pergamino);
+}
+
+.btn-option-a:hover {
+  background: linear-gradient(145deg, rgba(46, 125, 50, 0.4), rgba(46, 125, 50, 0.15));
+  border-color: var(--dorado-claro);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(46, 125, 50, 0.3);
+}
+
+/* Opción B – Razón de Estado */
+.btn-option-b {
+  background: linear-gradient(145deg, rgba(139, 0, 0, 0.25), rgba(139, 0, 0, 0.05));
+  color: var(--pergamino);
+}
+
+.btn-option-b:hover {
+  background: linear-gradient(145deg, rgba(139, 0, 0, 0.45), rgba(139, 0, 0, 0.15));
+  border-color: var(--dorado-claro);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(139, 0, 0, 0.3);
+}
+
+.btn-label {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dorado);
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- Consecuencia ---------- */
+.consequence-panel {
+  background: linear-gradient(145deg, rgba(201, 168, 76, 0.1), rgba(0, 0, 0, 0.3));
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  animation: fadeSlideIn 0.5s ease-out;
+}
+
+.consequence-panel p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--pergamino);
+  font-style: italic;
+}
+
+.btn-continue {
+  margin-top: 1.2rem;
+  padding: 0.8rem 2.5rem;
+  background: linear-gradient(145deg, var(--dorado), var(--dorado-claro));
+  color: var(--vino-oscuro);
+  border: none;
+  border-radius: 8px;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.btn-continue:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 168, 76, 0.4);
+}
+
+/* ---------- Pantalla final ---------- */
+.end-screen {
+  text-align: center;
+  animation: fadeSlideIn 0.6s ease-out;
+}
+
+.end-screen .end-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.end-screen h2 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  color: var(--dorado);
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.end-screen .end-message {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--pergamino);
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+}
+
+.reflection-box {
+  background: rgba(201, 168, 76, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 10px;
+  padding: 1.5rem 2rem;
+  margin: 1.5rem auto;
+  max-width: 620px;
+}
+
+.reflection-box p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--dorado-claro);
+  font-style: italic;
+}
+
+.btn-restart {
+  margin-top: 1.5rem;
+  padding: 1rem 3rem;
+  background: linear-gradient(145deg, var(--dorado), var(--dorado-claro));
+  color: var(--vino-oscuro);
+  border: none;
+  border-radius: 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.btn-restart:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 30px rgba(201, 168, 76, 0.45);
+}
+
+/* ---------- Pantalla de inicio ---------- */
+.intro-screen {
+  text-align: center;
+  animation: fadeSlideIn 0.8s ease-out;
+}
+
+.intro-screen .intro-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.intro-screen p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--pergamino);
+  max-width: 620px;
+  margin: 0 auto 1.5rem;
+}
+
+.btn-start {
+  padding: 1rem 3.5rem;
+  background: linear-gradient(145deg, var(--dorado), var(--dorado-claro));
+  color: var(--vino-oscuro);
+  border: none;
+  border-radius: 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+.btn-start:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 30px rgba(201, 168, 76, 0.5);
+  animation: none;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3); }
+  50%      { box-shadow: 0 4px 30px rgba(201, 168, 76, 0.6); }
+}
+
+/* ---------- Animaciones ---------- */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeSlideIn 0.5s ease-out;
+}
+
+/* ---------- Utilidades ---------- */
+.hidden {
+  display: none !important;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+  padding: 1.2rem;
+  border-top: 1px solid rgba(201, 168, 76, 0.2);
+  font-size: 0.85rem;
+  color: rgba(245, 230, 200, 0.4);
+  font-style: italic;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 600px) {
+  .header {
+    padding: 1.5rem 0.8rem 1rem;
+  }
+
+  .story-panel {
+    padding: 1.4rem 1.2rem;
+  }
+
+  .decisions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-decision {
+    max-width: 100%;
+  }
+
+  .dignity-section {
+    padding: 0.8rem 1rem;
+  }
+}
